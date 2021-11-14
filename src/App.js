@@ -1,12 +1,12 @@
 import React from 'react';
 import { BirthdayRoom } from './components/birthdayRoom';
-import './App.css';
+import './App.scss';
 const params = new URLSearchParams(window.location.search);
-const cell = params.get('cell') || 'test1234';
+const meetingId = params.get('id') ?? 'randomBirthday';
 function App() {
   return (
-    <div className="App">
-      <BirthdayRoom cell={cell}/>
+    <div className="app">
+      <BirthdayRoom meetingId={meetingId}/>
     </div>
   );
 }

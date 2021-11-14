@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { db } from '../../providers/Firebase';
-
+import { useState, useEffect } from "react";
+import { ref, onValue, off} from "firebase/database";
+import { db } from "../../providers/Firebase";
 // Gets the position of the avatars representing remote users from Firebase.
-export const useRemotePositions = ({ joinInfo, cell }) => {
+export const useRemotePositions = ({ joinInfo, meetingId }) => {
   const [positions, setPositions] = useState([]);
 
   // Subscribe for updates to remote positions.
@@ -13,7 +13,7 @@ export const useRemotePositions = ({ joinInfo, cell }) => {
     // The unique ID that identifies this client.
     const selfId = joinInfo.id;
 
-    const ref = db.ref(cell);
+    const valueRef = ref(db, meetingId);
     const callback = (snapshot) => {
       // This is an object where keys are user ids
       // and values are positions.
@@ -32,9 +32,9 @@ export const useRemotePositions = ({ joinInfo, cell }) => {
         setPositions(positions);
       }
     };
-    ref.on('value', callback);
-    return () => ref.off('value', callback);
-  }, [cell, joinInfo]);
+    onValue(valueRef, callback);
+    return () => off(callback);
+  }, [meetingId, joinInfo]);
 
   return positions;
 };

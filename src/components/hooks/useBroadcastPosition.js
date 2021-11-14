@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
-import { db } from '../../providers/Firebase';
-
+import { useEffect } from "react";
+import {  ref, set } from "firebase/database";
 // Broadcast the user's position to other clients using Firebase.
+import { db } from "../../providers/Firebase";
 export const useBroadcastPosition = ({
   joinInfo,
   position,
-  activeHexId,
-  cell,
+  meetingId,
   selfColor,
   selfIcon,
 }) => {
@@ -18,17 +17,15 @@ export const useBroadcastPosition = ({
     // The unique ID that identifies this client.
     const selfId = joinInfo.id;
 
-    //console.log(selfId);
-
     // Persist to Firebase.
-    db.ref(`${cell}/user${selfId}`).set({
+
+    set(ref(db, `${meetingId}/user${selfId}`), {
       position,
-      hexId: activeHexId,
       color: selfColor,
       icon: selfIcon,
       id: selfId,
     });
-  }, [cell, position, selfColor, selfIcon, joinInfo, activeHexId]);
+  }, [meetingId, position, selfColor, selfIcon, joinInfo]);
 
   // Remove users when they close the browser.
   useEffect(() => {
@@ -37,14 +34,14 @@ export const useBroadcastPosition = ({
 
     // Hack to be able to clear out positions manually.
     window.clearPositions = () => {
-      db.ref(`${cell}`).set({});
+      set(ref(db, `${meetingId}`), {});
     };
 
     // TODO see if we can use Dolby API events to track this more robustly.
     const callback = () => {
-      db.ref(`${cell}/user${selfId}`).set(null);
+      set(ref(db, `${meetingId}/user${selfId}`), null);
     };
-    window.addEventListener('beforeunload', callback);
-    return () => window.removeEventListener('beforeunload', callback);
-  }, [cell, joinInfo]);
+    window.addEventListener("beforeunload", callback);
+    return () => window.removeEventListener("beforeunload", callback);
+  }, [meetingId, joinInfo]);
 };

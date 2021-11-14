@@ -1,14 +1,14 @@
-import { useMemo } from 'react';
+// import { useMemo } from 'react';
 import { AppControls } from '../AppControls';
 import { CallToActionButton } from '../UI/CallToActionButton';
 import { icons } from './Avatar';
 import { AvatarOrVideo } from './AvatarOrVideo';
 import { useAvatarPosition } from '../hooks/useAvatarPosition';
 import { useRemotePositions } from '../hooks/useRemotePositions';
-import { HexGridOverlay, positionToH3 } from './HexGridOverlay';
+// import { HexGridOverlay, positionToH3 } from './HexGridOverlay';
 import { useMeeting } from '../hooks/useMeeting';
 import { useBroadcastPosition } from '../hooks/useBroadcastPosition';
-import { useStopAudio } from '../hooks/useStopAudio';
+// import { useStopAudio } from '../hooks/useStopAudio';
 import { useParticipants } from '../hooks/useParticipants';
 import { useKillZombies } from '../hooks/useKillZombies';
 import './BirthdayRoom.scss';
@@ -33,42 +33,41 @@ const svgHeight = '100%';
 
 const initialPosition = [200, 200];
 
-export function BirthdayRoom({ cell }) {
+export function BirthdayRoom({ meetingId }) {
   // Place the user in a live meeting based on the activeHexId they are in.
-  const joinInfo = useMeeting(cell);
+  const joinInfo = useMeeting(meetingId);
 
   // The position of the avatar representing the user.
   // This hook implements the arrow key interactions.
   const position = useAvatarPosition({ initialPosition });
 
   // The id of the "active" hexagon - the one the user avatar is inside.
-  const activeHexId = useMemo(() => positionToH3(position), [position]);
+  // const activeHexId = useMemo(() => positionToH3(position), [position]);
 
   // Broadcast the user's position to other clients using Firebase.
   useBroadcastPosition({
     joinInfo,
     position,
-    activeHexId,
-    cell,
+    meetingId,
     selfColor,
     selfIcon,
   });
 
   // Get the positions of the remote users from Firebase.
-  const remotePositions = useRemotePositions({ joinInfo, cell });
+  const remotePositions = useRemotePositions({ joinInfo, meetingId });
 
   // Ensure there are no stale Firebase entries for people who have left.
-  useKillZombies({ cell, remotePositions });
+  useKillZombies({ meetingId, remotePositions });
 
   // Stop audio for remote users who are not in the same hexagon.
-  useStopAudio({ joinInfo, activeHexId, remotePositions });
+  // useStopAudio({ joinInfo, remotePositions });
 
   const participants = useParticipants(joinInfo);
 
   return (
     <div className="birthday-room-container">
       <div className="top">
-        <div className="title">Welcome to the Dolby.io Headquarters!</div>
+        <div className="title">Welcome to the CeleBirthday!</div>
         <div className="blurb">
           Use L/R arrow keys to move around the space. Join a <br /> meeting by
           entering the same grid cell as other users.
@@ -83,7 +82,7 @@ export function BirthdayRoom({ cell }) {
             transform="scale(1) translate(-443, -605)"
           />
 
-          <HexGridOverlay activeHexId={activeHexId} />
+          {/* <HexGridOverlay activeHexId={activeHexId} /> */}
 
           {remotePositions.map(({ position, color, id, icon }) => (
             <AvatarOrVideo

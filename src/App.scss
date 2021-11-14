@@ -1,0 +1,21 @@
+@import './styles/colors.scss';
+.app {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  background-color: #142bdac7;
+
+  .utility-bar {
+    background-color: $primary-dark-3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .flipped {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+    -moz-transform: rotateY(180deg); /* Firefox */
+    -webkit-transform: translate3d(0, 0, 200px);
+  }
+}

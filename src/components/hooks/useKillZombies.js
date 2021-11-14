@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { conference } from '@voxeet/voxeet-web-sdk';
-import { db } from '../../providers/Firebase';
-
+import { useEffect } from "react";
+import { conference } from "@voxeet/voxeet-web-sdk";
+import { set, ref } from "firebase/database";
+import { db } from "../../providers/Firebase";
 // This hook clears out entries in Firebase for people
 // who have exited the meeting.
 // We use the `beforeunload` event elsewhere in the code
@@ -14,8 +14,7 @@ import { db } from '../../providers/Firebase';
 
 // We poll periodically to kill the zombies (in milliseconds).
 const pollInterval = 5000;
-
-export const useKillZombies = ({ cell, remotePositions }) => {
+export const useKillZombies = ({ meetingId, remotePositions }) => {
   useEffect(() => {
     // Check and rectify differences periodically, every `pollInterval` ms.
     const interval = setInterval(() => {
@@ -31,7 +30,7 @@ export const useKillZombies = ({ cell, remotePositions }) => {
           // the particimant inventory provided by Dolby APIs,
           if (!participant) {
             // remove it from Firebase.
-            db.ref(`${cell}/user${id}`).set(null);
+            set(ref(db, `${meetingId}/user${id}`), null);
           }
         }
       }
@@ -39,5 +38,5 @@ export const useKillZombies = ({ cell, remotePositions }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [cell, remotePositions]);
+  }, [meetingId, remotePositions]);
 };
