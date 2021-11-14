@@ -1,14 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { VoxeetSessionProvider } from "./providers/VoxeetSessionProvider";
+import { initializeVoxeet } from "./utils/voxeetUtils";
+initializeVoxeet();
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <VoxeetSessionProvider>
+      <App />
+    </VoxeetSessionProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

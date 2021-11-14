@@ -1,23 +1,12 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BirthdayRoom } from './components/birthdayRoom';
 import './App.css';
-
+const params = new URLSearchParams(window.location.search);
+const cell = params.get('cell') || 'test1234';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BirthdayRoom cell={cell}/>
     </div>
   );
 }
