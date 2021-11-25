@@ -9,9 +9,10 @@ const session = VoxeetSDK.session;
 const mediaDevice = VoxeetSDK.mediaDevice;
 const conference = VoxeetSDK.conference;
 
-const consumerKey = 'EN18-P5Tj0G3QXiJ-5E_zg==';
-const consumerSecret = 'kGKK9dvxT-gmJYHmepLKVt9HjNTSQ35H3-efuGpgHk4=';
-
+const consumerKey = process.env.REACT_APP_DOLBY_CONSUMER_KEY;
+const consumerSecret = process.env.REACT_APP_DOLBY_CONSUMER_SECRET;
+console.log(process.env.REACT_APP_DOLBY_CONSUMER_KEY);
+console.log(process.env.REACT_APP_DOLBY_CONSUMER_SECRET);
 // const mediaDeviceService = mediaDevice();
 export const initializeVoxeet = () => {
   initialize(consumerKey, consumerSecret);

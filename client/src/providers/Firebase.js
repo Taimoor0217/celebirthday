@@ -3,7 +3,7 @@ import {getDatabase} from 'firebase/database';
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyBSAiL_SDj13LaxmIRnykyMWe5tT36pQ88",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 
   authDomain: "celebirthday-f5331.firebaseapp.com",
 
