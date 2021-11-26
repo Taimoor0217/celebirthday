@@ -8,6 +8,7 @@ export const useBroadcastPosition = ({
   meetingId,
   selfColor,
   selfIcon,
+  userName
 }) => {
   // Write position data into Firebase.
   useEffect(() => {
@@ -24,8 +25,9 @@ export const useBroadcastPosition = ({
       color: selfColor,
       icon: selfIcon,
       id: selfId,
+      userName
     });
-  }, [meetingId, position, selfColor, selfIcon, joinInfo]);
+  }, [meetingId, position, selfColor, selfIcon, joinInfo, userName]);
 
   // Remove users when they close the browser.
   useEffect(() => {

@@ -5,8 +5,8 @@ import {
   startAudio,
   stopAudio,
 } from '../../utils/voxeetUtils';
-import MicOnOffIcon from '../../components/assets/MicOnOffIcon';
-import VideoOnOffIcon from '../../components/assets/VideoOnOffIcon';
+import MicOnOffIcon from '../assets/MicOnOffIcon';
+import VideoOnOffIcon from '../assets/VideoOnOffIcon';
 import MediaSelectors from '../UI/MediaSelectors/MediaSelectors';
 import '../UI/MediaSelectors/MediaSelectors.scss';
 import './AppControls.scss';
