@@ -11,8 +11,6 @@ const conference = VoxeetSDK.conference;
 
 const consumerKey = process.env.REACT_APP_DOLBY_CONSUMER_KEY;
 const consumerSecret = process.env.REACT_APP_DOLBY_CONSUMER_SECRET;
-console.log(process.env.REACT_APP_DOLBY_CONSUMER_KEY);
-console.log(process.env.REACT_APP_DOLBY_CONSUMER_SECRET);
 // const mediaDeviceService = mediaDevice();
 export const initializeVoxeet = () => {
   initialize(consumerKey, consumerSecret);

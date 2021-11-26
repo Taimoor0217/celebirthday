@@ -9,6 +9,7 @@ export const AvatarOrVideo = ({
   icon,
   isSelf,
   participants,
+  userName,
 }) => {
   // Isolate the video stream of the participant;
   const videoStream = useMemo(() => {
@@ -27,8 +28,8 @@ export const AvatarOrVideo = ({
   }, [id, participants]);
 
   return videoStream ? (
-    <ParticipantVideo position={position} videoStream={videoStream}  isSelf={isSelf} />
+    <ParticipantVideo position={position} videoStream={videoStream}  isSelf={isSelf} userName={userName} />
   ) : (
-    <Avatar position={position} color={color} icon={icon} isSelf={isSelf} />
+    <Avatar position={position} color={color} icon={icon} userName={isSelf ? "You" : userName} />
   );
 };
