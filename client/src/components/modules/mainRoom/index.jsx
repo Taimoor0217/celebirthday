@@ -1,16 +1,16 @@
 // import { useMemo } from 'react';
-import { AppControls } from '../AppControls';
-import { CallToActionButton } from '../UI/CallToActionButton';
+import { AppControls } from '../../AppControls';
+import { CallToActionButton } from '../../UI/CallToActionButton';
 import { icons } from './Avatar';
 import { AvatarOrVideo } from './AvatarOrVideo';
-import { useAvatarPosition } from '../hooks/useAvatarPosition';
-import { useRemotePositions } from '../hooks/useRemotePositions';
+import { useAvatarPosition } from '../../hooks/useAvatarPosition';
+import { useRemotePositions } from '../../hooks/useRemotePositions';
 // import { HexGridOverlay, positionToH3 } from './HexGridOverlay';
-import { useMeeting } from '../hooks/useMeeting';
-import { useBroadcastPosition } from '../hooks/useBroadcastPosition';
-// import { useStopAudio } from '../hooks/useStopAudio';
-import { useParticipants } from '../hooks/useParticipants';
-import { useKillZombies } from '../hooks/useKillZombies';
+import { useMeeting } from '../../hooks/useMeeting';
+import { useBroadcastPosition } from '../../hooks/useBroadcastPosition';
+// import { useStopAudio } from '../../hooks/useStopAudio';
+import { useParticipants } from '../../hooks/useParticipants';
+import { useKillZombies } from '../../hooks/useKillZombies';
 import './BirthdayRoom.scss';
 
 // The color that your avatar will appear.
@@ -33,7 +33,7 @@ const svgHeight = '100%';
 
 const initialPosition = [200, 200];
 
-export function BirthdayRoom({ meetingId }) {
+export function MainRoom({ meetingId, userName }) {
   // Place the user in a live meeting based on the activeHexId they are in.
   const joinInfo = useMeeting(meetingId);
 
@@ -51,10 +51,11 @@ export function BirthdayRoom({ meetingId }) {
     meetingId,
     selfColor,
     selfIcon,
+    userName
   });
 
   // Get the positions of the remote users from Firebase.
-  const remotePositions = useRemotePositions({ joinInfo, meetingId });
+  const remotePositions = useRemotePositions({ joinInfo, meetingId, userName });
 
   // Ensure there are no stale Firebase entries for people who have left.
   useKillZombies({ meetingId, remotePositions });
@@ -84,7 +85,7 @@ export function BirthdayRoom({ meetingId }) {
 
           {/* <HexGridOverlay activeHexId={activeHexId} /> */}
 
-          {remotePositions.map(({ position, color, id, icon }) => (
+          {remotePositions.map(({ position, color, id, icon, userName }) => (
             <AvatarOrVideo
               key={id}
               id={id}
@@ -92,6 +93,7 @@ export function BirthdayRoom({ meetingId }) {
               color={color}
               icon={icon}
               participants={participants}
+              userName={userName}
             />
           ))}
           <AvatarOrVideo
@@ -101,6 +103,7 @@ export function BirthdayRoom({ meetingId }) {
             id={joinInfo ? joinInfo.id : null}
             isSelf
             participants={participants}
+            userName={userName}
           />
         </svg>
       </div>

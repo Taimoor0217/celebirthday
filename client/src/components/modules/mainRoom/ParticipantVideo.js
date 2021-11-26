@@ -1,17 +1,22 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 // Inspired by:
 // https://github.com/dolbyio-samples/dolbyio-web-file-presentation-service/blob/362743a41466d66567fd81ecd52b15f605893925/client/components/attendeeVideo.js#L28
 
-const size = 40;
+const size = 150;
 
-export const ParticipantVideo = ({ position, videoStream, isSelf }) => {
+export const ParticipantVideo = ({
+  position,
+  videoStream,
+  isSelf,
+  userName,
+}) => {
   const ref = useRef();
 
   // add mirror class to video if current participant
-  let addFlipClass = isSelf ? 'flipped' : '';
+  let addFlipClass = isSelf ? "flipped" : "";
 
-  let isSafari = navigator.vendor === 'Apple Computer, Inc.' ? true : false;
+  let isSafari = navigator.vendor === "Apple Computer, Inc." ? true : false;
 
   let topPosition = isSafari ? position[1] - 20 : 0;
   let leftPosition = isSafari ? position[0] - 20 : 0;
@@ -32,17 +37,20 @@ export const ParticipantVideo = ({ position, videoStream, isSelf }) => {
           className={addFlipClass}
           ref={ref}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: `${topPosition}px`,
             left: `${leftPosition}px`,
             borderRadius: `${size / 2}px`,
-            transform: 'translate3d(0, 0, 200px)', // fix for safari to make video top most layer
+            transform: "translate3d(0, 0, 200px)", // fix for safari to make video top most layer
           }}
           playsInline
           autoPlay
           muted
         ></video>
       </foreignObject>
+      <g className="avatar-video-title">
+        <text textAnchor="middle" fill="white" stroke="red">{isSelf ? "You" : userName}</text>
+      </g>
     </g>
   );
 };

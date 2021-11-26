@@ -2,9 +2,9 @@
 import React, { useState, useCallback } from 'react';
 // internal
 // components
-import MediaDropdown from './MediaDropdown.js';
-import SettingsIcon from '../../assets/SettingsIcon.js';
-import LinkIcon from '../../assets/LinkIcon.js';
+import MediaDropdown from './MediaDropdown.jsx';
+import SettingsIcon from '../../assets/SettingsIcon.jsx';
+import LinkIcon from '../../assets/LinkIcon.jsx';
 // style
 import './MediaSelectors.scss';
 
