@@ -1,5 +1,7 @@
+@import '../../styles/colors.scss';
 .app-controls {
   display: flex;
+  flex-direction: column;
 
   &__button {
     box-sizing: border-box;
@@ -13,17 +15,17 @@
     align-items: center;
     user-select: none;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: $secondary-color-background;
+    border: 1px solid white;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.3);
+      opacity: 0.8;
     }
 
     &.is-active {
-      background-color: #7e84ff;
-
+      background-color: $tertiary-color-background;
       &:hover {
-        background-color: rgba(126, 132, 255, 0.7);
+        opacity: 0.8 ;
       }
     }
   }

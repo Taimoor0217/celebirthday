@@ -14,20 +14,19 @@ body, html{
   height: 100%;
   flex-flow: column;
   background-color: $primary-color-background;
+}
+.utility-bar {
+  background-color: $primary-dark-3;
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .utility-bar {
-    background-color: $primary-dark-3;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .flipped {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg); /* Safari and Chrome */
-    -moz-transform: rotateY(180deg); /* Firefox */
-    -webkit-transform: translate3d(0, 0, 200px);
-  }
-  .avatar-video-title {
-    transform: translate(75px, 170px);
-  }
+.flipped {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+  -webkit-transform: translate3d(0, 0, 200px);
+}
+.avatar-video-title {
+  transform: translate(75px, 170px);
 }

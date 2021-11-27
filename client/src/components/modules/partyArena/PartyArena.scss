@@ -1,0 +1,88 @@
+@import "../../../styles/colors.scss";
+.party-arena {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background-color: $secondary-color-background;
+  padding: 1% 1% 10px 1%;
+}
+.room-container {
+  height: 90vh;
+  width: 93vw;
+}
+.app-controls-holder {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 6%;
+  right: 15px;
+  height: 80vh;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.side-cards {
+  &-holder {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+  &-card {
+    &-title{
+      font-weight: bold;
+      color: $primary-color-text;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-size: 30px;
+      text-align: center;
+      justify-content: center;
+      background-color: rgba(240, 255, 255, 0.548);
+      align-items: center;
+      border-radius: 15px;
+      animation: 0.2s all ease-in-out;
+      opacity: 0;
+      .underline{
+        margin-top: 0px;
+        width: 50px;
+        background-color: $primary-color-text;
+        border: 1px solid $primary-color-text;
+      }
+    }
+    z-index: 1000;
+    @media (min-width: 1800px) {
+      min-height: 160px;
+      min-width: 270px;
+    }
+    min-height: 120px;
+    min-width: 200px;
+
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    &:hover {
+      cursor: pointer;
+      .side-cards-card-title {
+        opacity: 1;
+      }
+    }
+    &.memories{
+      background-image: url('../../../assets/memories.jpg');
+      background-size: cover;
+    }
+    &.blessings{
+      background-image: url('../../../assets/blessings.svg');
+    }
+    &.cake{
+      background-image: url('../../../assets/cake.jpg');
+    }
+    background-repeat: no-repeat;
+    background-size: contain;
+    object-fit: contain;
+    background-position: center;
+  }
+}

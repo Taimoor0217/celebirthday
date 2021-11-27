@@ -24,6 +24,12 @@
   }
   &-secondary {
     background-color: $secondary-color-background;
+    &-settings{
+      background-color: white;
+      color: $secondary-color-background;
+      text-align: left;
+      margin-left: -5px;
+    }
   }
   &-tertiary {
     background-color: $tertiary-color-background;
@@ -41,4 +47,7 @@
 }
 .dialog-title-root{
   font-size: 20px;
+}
+.room{
+  border-radius: 12px !important;
 }
