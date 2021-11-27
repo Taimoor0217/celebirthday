@@ -1,7 +1,8 @@
 import "./LandingPage.scss";
-import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import Stack from "@mui/material/Stack";
+import CreateParty from "../initializeParty/CreateParty";
+import JoinParty from "../initializeParty/JoinParty";
 const LandingPage = () => {
   return (
     <div className="page-paper">
@@ -27,28 +28,12 @@ const LandingPage = () => {
   );
 };
 const Buttons = () => {
-  const navigate = useNavigate();
   return (
     <Stack direction="row" spacing={2}>
-      <button
-        className="button-action button-secondary"
-        variant="contained"
-        onClick={() => {
-          navigate("/create");
-        }}
-      >
-        Create Party
-      </button>
-      <button
-        className="button-action button-tertiary"
-        onClick={() => {
-          navigate("/join");
-        }}
-        variant="contained"
-      >
-        Join Party
-      </button>
+      <CreateParty />
+      <JoinParty />
     </Stack>
   );
 };
+
 export default LandingPage;

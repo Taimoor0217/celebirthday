@@ -27,5 +27,18 @@
   }
   &-tertiary {
     background-color: $tertiary-color-background;
+    &-inverted {
+      background-color: white;
+      color: $tertiary-color-background;
+      border: 1px solid $tertiary-color-background;
+    }
   }
+  &-cancel{
+    color: $primary-color-background;
+    background-color: white;
+    border: 1px solid $primary-color-background;
+  }
+}
+.dialog-title-root{
+  font-size: 20px;
 }
