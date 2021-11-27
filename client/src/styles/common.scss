@@ -1,0 +1,31 @@
+@import "./colors.scss";
+.page-paper {
+  background-color: white;
+  border-radius: 12px;
+  margin: 3% 3% 10px 3%;
+  height: 100%;
+}
+.button {
+  &-action {
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    color: white;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &-primary {
+    background-color: $primary-color-background;
+  }
+  &-secondary {
+    background-color: $secondary-color-background;
+  }
+  &-tertiary {
+    background-color: $tertiary-color-background;
+  }
+}

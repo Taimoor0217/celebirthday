@@ -1,7 +1,13 @@
-$primary: #7e84ff;
+$primary-color-background: #4c2582;
+$secondary-color-background: #4b5ca8;
+$tertiary-color-background: #86cbc8;
+$primary-color-text: $primary-color-background;
+$secondary-color-text: $secondary-color-background;
+$tertiary-color-text: $tertiary-color-background;
 $primary-light: #a5a8fe;
 $primary-dark: #5763c4;
 $primary-dark-2: #3d4484;
 $primary-dark-3: #1b1b27;
 $green: #50b06c;
 $dolby-io-gradient: linear-gradient(90deg, #3c4bf4 0%, #7340f5 100%);
+
