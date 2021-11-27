@@ -62,7 +62,7 @@ export const AppControls = () => {
         />
       </div>
       <div>
-        <MediaSelectors />
+        {/* <MediaSelectors /> */}
       </div>
     </div>
   );

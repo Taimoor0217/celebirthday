@@ -35,35 +35,32 @@ const initialPosition = [200, 200];
 
 export function MainRoom({ meetingId, userName }) {
   // Place the user in a live meeting based on the activeHexId they are in.
-  // const joinInfo = useMeeting(meetingId);
+  const joinInfo = useMeeting(meetingId);
 
   // The position of the avatar representing the user.
   // This hook implements the arrow key interactions.
-  // const position = useAvatarPosition({ initialPosition });
+  const position = useAvatarPosition({ initialPosition });
 
   // The id of the "active" hexagon - the one the user avatar is inside.
   // const activeHexId = useMemo(() => positionToH3(position), [position]);
 
   // Broadcast the user's position to other clients using Firebase.
-  // useBroadcastPosition({
-  //   joinInfo,
-  //   position,
-  //   meetingId,
-  //   selfColor,
-  //   selfIcon,
-  //   userName,
-  // });
+  useBroadcastPosition({
+    joinInfo,
+    position,
+    meetingId,
+    selfColor,
+    selfIcon,
+    userName,
+  });
 
   // Get the positions of the remote users from Firebase.
-  // const remotePositions = useRemotePositions({ joinInfo, meetingId, userName });
+  const remotePositions = useRemotePositions({ joinInfo, meetingId, userName });
 
   // Ensure there are no stale Firebase entries for people who have left.
-  // useKillZombies({ meetingId, remotePositions });
+  useKillZombies({ meetingId, remotePositions });
 
-  // Stop audio for remote users who are not in the same hexagon.
-  // useStopAudio({ joinInfo, remotePositions });
-
-  // const participants = useParticipants(joinInfo);
+  const participants = useParticipants(joinInfo);
 
   return (
     <div 
@@ -71,45 +68,31 @@ export function MainRoom({ meetingId, userName }) {
     style={{
       backgroundImage: `url(${BackGround})`,
     }}
-    ></div>
-    // <div className="birthday-room-container">
-    //   <div className="top">
-    //     <AppControls />
-    //     <div className="counterweight" />
-    //   </div>
-    //   <div className="map-image-container">
-    //     <svg width={svgWidth} height={svgHeight} className="birthday-room">
-    //       <image
-    //         href="1275-market-st-16th-optimized.png"
-    //         x="0"
-    //         y="0"
-    //         transform="scale(1) translate(-443, -605)"
-    //       />
-
-    //       {/* <HexGridOverlay activeHexId={activeHexId} /> */}
-    //       {/*
-    //       {remotePositions.map(({ position, color, id, icon, userName }) => (
-    //         <AvatarOrVideo
-    //           key={id}
-    //           id={id}
-    //           position={position}
-    //           color={color}
-    //           icon={icon}
-    //           participants={participants}
-    //           userName={userName}
-    //         />
-    //       ))}
-    //       <AvatarOrVideo
-    //         color={selfColor}
-    //         icon={selfIcon}
-    //         position={position}
-    //         id={joinInfo ? joinInfo.id : null}
-    //         isSelf
-    //         participants={participants}
-    //         userName={userName}
-    //       /> */}
-    //     </svg>
-    //   </div>
-    // </div>
+    >
+      <div className="map-image-container">
+        <svg width={svgWidth} height={svgHeight} className="birthday-room">
+          {remotePositions.map(({ position, color, id, icon, userName }) => (
+            <AvatarOrVideo
+              key={id}
+              id={id}
+              position={position}
+              color={color}
+              icon={icon}
+              participants={participants}
+              userName={userName}
+            />
+          ))}
+          <AvatarOrVideo
+            color={selfColor}
+            icon={selfIcon}
+            position={position}
+            id={joinInfo ? joinInfo.id : null}
+            isSelf
+            participants={participants}
+            userName={userName}
+          />
+        </svg>
+      </div>
+    </div>
   );
 }

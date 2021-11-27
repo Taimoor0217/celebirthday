@@ -6,7 +6,14 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { initializeVoxeet } from "../../../utils/voxeetUtils";
-import './PartyArena.scss'
+import { AppControls } from "../../AppControls";
+import "./PartyArena.scss";
+import SettingsIcon from "../../assets/SettingsIcon";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+
 const PartyArena = () => {
   initializeVoxeet();
   const [userName, setUserName] = React.useState(
@@ -28,8 +35,9 @@ const PartyArena = () => {
   return (
     <VoxeetSessionProvider name={userName}>
       <div className="party-arena">
-          {/* <NameChangeForm userName={userName} setUserName={setUserName} /> */}
-        <div>
+        <div className="app-controls-holder">
+          <AppControls />
+          <Settings userName={userName} setUserName={setUserName} />
         </div>
         <div className="room-container">
           <MainRoom meetingId={partyId} userName={userName} />
@@ -38,34 +46,66 @@ const PartyArena = () => {
     </VoxeetSessionProvider>
   );
 };
-const NameChangeForm = ({ userName, setUserName }) => {
+const Settings = ({ userName, setUserName }) => {
   const [val, setVal] = React.useState(userName);
-  const handleSubmit = (e) => {
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleRenameSubmit = (e) => {
     e.preventDefault();
     setUserName(val);
+    handleClose();
   };
   return (
-    <Box
-      component="form"
-      sx={{
-        "& > :not(style)": { m: 1, width: "25ch" },
-      }}
-      noValidate
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="updated-name"
-        label="Your Name"
-        variant="outlined"
-        value={val}
-        onChange={(e) => {
-          setVal(e.target.value);
+    <div>
+      <div className="app-controls__button" onClick={handleClickOpen}>
+        <SettingsIcon width={24} height={24} fill={"white"} />
+      </div>
+      <Dialog
+        maxWidth={"lg"}
+        classes={{
+          paper: "dialog-root",
         }}
-      />
-      <Button variant="contained" type="submit">
-        Change Name
-      </Button>
-    </Box>
+        open={open}
+        onClose={handleClose}
+      >
+        <DialogTitle classes={{ root: "dialog-title-root" }}>
+          Settings
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            id="updated-name"
+            autoFocus
+            label="You Name"
+            fullWidth
+            variant="standard"
+            value={val}
+            onChange={(e) => {
+              setVal(e.target.value);
+            }}
+          />
+          <button
+            onClick={handleRenameSubmit}
+            className={"button-action button-secondary-settings"}
+            type="submit"
+          >
+            Change Name
+          </button>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className={"button-action button-cancel"}
+            onClick={handleClose}
+          >
+            Close
+          </button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 export default PartyArena;
