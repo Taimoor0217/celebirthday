@@ -13,7 +13,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import SideCards  from "./SideCards";
 const PartyArena = () => {
   initializeVoxeet();
   const [userName, setUserName] = React.useState(
@@ -36,8 +36,11 @@ const PartyArena = () => {
     <VoxeetSessionProvider name={userName}>
       <div className="party-arena">
         <div className="app-controls-holder">
-          <AppControls />
-          <Settings userName={userName} setUserName={setUserName} />
+          <div>
+            <AppControls />
+            <Settings userName={userName} setUserName={setUserName} />
+          </div>
+          <SideCards />
         </div>
         <div className="room-container">
           <MainRoom meetingId={partyId} userName={userName} />
@@ -46,6 +49,8 @@ const PartyArena = () => {
     </VoxeetSessionProvider>
   );
 };
+
+
 const Settings = ({ userName, setUserName }) => {
   const [val, setVal] = React.useState(userName);
   const [open, setOpen] = React.useState(false);
