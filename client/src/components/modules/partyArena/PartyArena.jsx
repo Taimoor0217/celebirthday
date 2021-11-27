@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { initializeVoxeet } from "../../../utils/voxeetUtils";
+import './PartyArena.scss'
 const PartyArena = () => {
   initializeVoxeet();
   const [userName, setUserName] = React.useState(
@@ -26,12 +27,14 @@ const PartyArena = () => {
   }
   return (
     <VoxeetSessionProvider name={userName}>
-      <React.Fragment>
+      <div className="party-arena">
+          {/* <NameChangeForm userName={userName} setUserName={setUserName} /> */}
         <div>
-          <NameChangeForm userName={userName} setUserName={setUserName} />
         </div>
-        <MainRoom meetingId={partyId} userName={userName} />
-      </React.Fragment>
+        <div className="room-container">
+          <MainRoom meetingId={partyId} userName={userName} />
+        </div>
+      </div>
     </VoxeetSessionProvider>
   );
 };
