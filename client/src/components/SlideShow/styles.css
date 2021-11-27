@@ -1,0 +1,5 @@
+.alice-carousel ul li img{
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+}
