@@ -38,7 +38,10 @@ export const Avatar = ({ position, color = "#FF59D1", icon, userName }) => {
   }
   return (
     <g className="avatar" transform={`translate(${position})`} fill={color}>
-      <circle r="50" />
+      <foreignObject y={-156} x={-48} width={100} height={100}>
+        <div className="avatar-cap" />
+      </foreignObject>
+      <circle r="70" />
       <g transform={`scale(${iconScale})`}>
         <Icon color="white" />
       </g>

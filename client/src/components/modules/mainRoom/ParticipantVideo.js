@@ -32,9 +32,12 @@ export const ParticipantVideo = ({
         position[1] - size / 2
       })`}
     >
+      <foreignObject y={-170} x={-30} width={140} height={200}>
+        <div className="avatar-cap"/>
+      </foreignObject>
       <foreignObject width={size} height={size}>
         <video
-          className={addFlipClass}
+          className={[addFlipClass, "participant-video"].join(" ")}
           ref={ref}
           style={{
             position: "absolute",
@@ -49,7 +52,7 @@ export const ParticipantVideo = ({
         ></video>
       </foreignObject>
       <g className="avatar-video-title">
-        <text textAnchor="middle" fill="white" stroke="red">{isSelf ? "You" : userName}</text>
+        {isSelf ? "You" : userName}
       </g>
     </g>
   );

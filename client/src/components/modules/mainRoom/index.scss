@@ -60,3 +60,17 @@ svg.birthday-room {
   object-fit: contain;
   background-color: white;
 }
+.participant-video{
+  border: 5px solid nth($colors, random(length($colors)));
+  
+}
+$caps: url("../../../assets/cap1.png") url("../../../assets/cap2.png");
+.avatar-cap{
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: contain;
+  background-image: nth($caps, random(length($caps)));
+}

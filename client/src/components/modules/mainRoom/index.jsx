@@ -15,12 +15,9 @@ import BackGround from "../../../assets/room1.svg"
 
 // The color that your avatar will appear.
 const colors = [
-  "#EB467E",
-  "#64C6FA",
-  "#7340F5",
-  "#818181",
-  "#50B06C",
-  "#3C4BF4",
+  "#4c2582",
+  "#4b5ca8",
+  "#86cbc8",
 ];
 
 const selfColor = colors[Math.floor(Math.random() * colors.length)];
