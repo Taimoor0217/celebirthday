@@ -24,7 +24,7 @@
   }
   &-secondary {
     background-color: $secondary-color-background;
-    &-settings{
+    &-settings {
       background-color: white;
       color: $secondary-color-background;
       text-align: left;
@@ -39,17 +39,41 @@
       border: 1px solid $tertiary-color-background;
     }
   }
-  &-cancel{
+  &-cancel {
     color: $primary-color-background;
     background-color: white;
     border: 1px solid $primary-color-background;
   }
 }
-.dialog-title-root{
+.dialog-title-root {
   font-size: 20px;
 }
-.room{
+.room {
   border-radius: 12px !important;
   height: 100%;
   width: 100%;
+}
+.initializing {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  font-size: 6.7rem;
+  color: $primary-color-text;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 2px #2d291c;
+  flex-direction: column;
+  &-bottom-line{
+    width: 200px;
+    margin-left:5px;
+    height: 10px;
+    background-color: $primary-color-text;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 2px #2D291C;
+  }
 }

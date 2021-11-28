@@ -11,5 +11,11 @@ export const VoxeetSessionProvider = ({ name, children }) => {
     });
   }, []);
 
-  return isSessionLoaded ? children : <div>Initializing Meeting...</div>;
+  return isSessionLoaded ? (
+    children
+  ) : (
+    <div className="initializing">
+      Initializing ...
+    </div>
+  );
 };
