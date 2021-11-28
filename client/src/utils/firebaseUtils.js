@@ -1,4 +1,4 @@
-import { ref, get, set, onValue } from "firebase/database";
+import { ref, get, set, push, onValue } from "firebase/database";
 import { db } from "../providers/Firebase";
 import { removeSpacesAndEncode } from "./computers";
 export const getFirebaseDataOnce = async ({ meetingId }) => {
@@ -27,7 +27,7 @@ export const createParty = async (partyName, metaData) => {
   });
 };
 
-export const getParty = async (partyId, callBack, error) => {
+export const getParty = async (partyId, callBack, error?) => {
   const valueRef = ref(db, `parties/${partyId}`);
   onValue(valueRef, (snapshot) => {
     if(!snapshot.exists()) {
@@ -37,3 +37,20 @@ export const getParty = async (partyId, callBack, error) => {
     }
   });
 };
+
+export const createBlessing = async (partyId, blessing) => {
+  await push(ref(db, `partyBlessings/${partyId}`), blessing);
+};
+export const fetchBlessings = async (partyId, callBack, error = undefined) => {
+  const valueRef = ref(db, `partyBlessings/${partyId}`);
+  onValue(valueRef, (snapshot) => {
+    if(!snapshot.exists()) {
+      if(error){
+        error();
+      }
+    }else{
+      callBack(snapshot.val());
+    }
+  });
+
+}

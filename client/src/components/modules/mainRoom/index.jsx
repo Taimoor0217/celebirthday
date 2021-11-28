@@ -33,7 +33,7 @@ const svgHeight = "100%";
 
 const initialPosition = [200, 200];
 
-export function MainRoom({ meetingId, userName }) {
+export function MainRoom({ meetingId, userName , hidden}) {
   // Place the user in a live meeting based on the activeHexId they are in.
   const joinInfo = useMeeting(meetingId);
 
@@ -64,7 +64,7 @@ export function MainRoom({ meetingId, userName }) {
 
   return (
     <div 
-    className="main-room room"
+    className={["main-room room", hidden ? "hidden" : ""].join(" ")}
     style={{
       backgroundImage: `url(${BackGround})`,
     }}

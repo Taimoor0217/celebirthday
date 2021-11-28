@@ -2,18 +2,20 @@ import React from "react";
 import { VoxeetSessionProvider } from "../../../providers/VoxeetSessionProvider";
 import { getParty } from "../../../utils/firebaseUtils";
 import { MainRoom } from "../mainRoom";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { initializeVoxeet } from "../../../utils/voxeetUtils";
 import { AppControls } from "../../AppControls";
-import "./PartyArena.scss";
 import SettingsIcon from "../../assets/SettingsIcon";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import SideCards  from "./SideCards";
+import SideCards from "./SideCards";
+import CakeArea from "../cake/CakeArea";
+import Blessings from "../blessings/Blessings";
+import Memories from "../memories/Memories";
+import "./PartyArena.scss";
+
 const PartyArena = () => {
   initializeVoxeet();
   const [userName, setUserName] = React.useState(
@@ -24,6 +26,7 @@ const PartyArena = () => {
   const partyId = params.get("partyId");
   // eslint-disable-next-line no-unused-vars
   const [partyConfig, setPartyConfig] = React.useState({});
+  const [currentRoom, setCurrentRoom] = React.useState(1);
   React.useEffect(() => {
     if (partyId && partyExists) {
       getParty(partyId, setPartyConfig, () => setPartyExists(false));
@@ -40,16 +43,30 @@ const PartyArena = () => {
             <AppControls />
             <Settings userName={userName} setUserName={setUserName} />
           </div>
-          <SideCards />
+          <SideCards {...{ currentRoom, setCurrentRoom }} />
         </div>
         <div className="room-container">
-          <MainRoom meetingId={partyId} userName={userName} />
+          <MainRoom
+            {...{
+              meetingId: partyId,
+              userName,
+              partyConfig,
+              partyId,
+              hidden: currentRoom !== 1,
+            }}
+          />
+          {currentRoom === 2 && <Memories {...{ partyConfig, partyId }} />}
+          {currentRoom === 3 && (
+            <Blessings
+              {...{ partyConfig, partyId, back: () => setCurrentRoom(1) }}
+            />
+          )}
+          {/* {currentRoom === 4 && <CakeArea {...{ partyConfig, partyId }} />} */}
         </div>
       </div>
     </VoxeetSessionProvider>
   );
 };
-
 
 const Settings = ({ userName, setUserName }) => {
   const [val, setVal] = React.useState(userName);
