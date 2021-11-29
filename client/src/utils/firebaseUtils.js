@@ -27,7 +27,7 @@ export const createParty = async (partyName, metaData) => {
   });
 };
 
-export const getParty = async (partyId, callBack, error?) => {
+export const getParty = async (partyId, callBack, error) => {
   const valueRef = ref(db, `parties/${partyId}`);
   onValue(valueRef, (snapshot) => {
     if(!snapshot.exists()) {
@@ -41,6 +41,7 @@ export const getParty = async (partyId, callBack, error?) => {
 export const createBlessing = async (partyId, blessing) => {
   await push(ref(db, `partyBlessings/${partyId}`), blessing);
 };
+
 export const fetchBlessings = async (partyId, callBack, error = undefined) => {
   const valueRef = ref(db, `partyBlessings/${partyId}`);
   onValue(valueRef, (snapshot) => {
@@ -52,5 +53,25 @@ export const fetchBlessings = async (partyId, callBack, error = undefined) => {
       callBack(snapshot.val());
     }
   });
+}
 
+
+
+export const createMemory = async (partyId, memory) => {
+  console.log(memory)
+  await push(ref(db, `partyMemories/${partyId}`), memory);
+};
+
+export const fetchMemories = async (partyId, callBack, error = undefined) => {
+  const valueRef = ref(db, `partyMemories/${partyId}`);
+  onValue(valueRef, (snapshot) => {
+    if(!snapshot.exists()) {
+      if(error){
+        error();
+      }
+    }else{
+      console.log(snapshot.val())
+      callBack(snapshot.val());
+    }
+  });
 }
