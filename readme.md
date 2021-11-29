@@ -14,3 +14,8 @@ We plan to achieve the following things in the future.
 - Integrate Dolby's different audio/video filters and permissions in the conference. 
 - Improve the overall security of the Application.
 - Allow social login and calendar integrations
+
+
+## Attributions
+- Most of the assets ( images, vectors and gifs have been taken from https://www.vecteezy.com/. Any mis-attribution will be duly entertained and modified
+- CSS cake animation from https://codepen.io/JensJ/pen/MzZrbw
