@@ -12,6 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 const CreateParty = () => {
   const [open, setOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -23,6 +24,7 @@ const CreateParty = () => {
   const handleSubmit = async (e) => {
     if (!partyName) return;
     e.preventDefault();
+    setIsLoading(true);
     await createParty(partyName, {
       isPublic: true,
     });
@@ -70,7 +72,7 @@ const CreateParty = () => {
             className={"button-action button-secondary"}
             onClick={handleSubmit}
           >
-            Create Party
+            {isLoading ? "Creating..." : "Create Party"}
           </button>
         </DialogActions>
       </Dialog>

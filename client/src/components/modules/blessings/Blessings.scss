@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Dancing+Script:wght@400;500&family=Roboto:ital,wght@0,100;0,300;0,400;1,500&display=swap');
 .blessings-room {
-  padding-top: 5%;
   &-actions{
     display: flex;
     justify-content: center;
@@ -12,9 +11,13 @@
 .blessing-card {
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 500px;
   background-color: white;
-  height: 600px;
+  @media (min-height: 900px) {
+    width: 500px;
+    height: 600px;
+  }
+  width: 500px;
+  height: 400px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
   display: flex;
   align-content: center;
@@ -34,4 +37,14 @@
 .rec-dot_active{
   background-color: white !important;
   box-shadow: none !important;
+}
+.blessings-header {
+  font-size: 50px;
+  font-style: italic;
+  font-family: "Caveat", cursive !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: white;
+  text-shadow: 3px 3px 2px rgba(181, 150, 150, 1);
 }

@@ -33,9 +33,9 @@ const SideCards = ({ currentRoom, setCurrentRoom }) => {
         </div>
       </div>
       <div
-        // onClick={() => {
-        //   setCurrentRoom(4);
-        // }}
+        onClick={() => {
+          setCurrentRoom(4);
+        }}
         className={[
           "side-cards-card",
           "cake",

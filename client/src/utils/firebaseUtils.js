@@ -52,5 +52,22 @@ export const fetchBlessings = async (partyId, callBack, error = undefined) => {
       callBack(snapshot.val());
     }
   });
+}
 
+export const saveImageUrl = async (partyId, url) => {
+  console.log(partyId);
+  await push(ref(db, `partyMemories/${partyId}`), url);
+};
+export const fetchPartyImageUrls = async (partyId, callBack, error = undefined) => {
+  console.log(partyId)
+  const valueRef = ref(db, `partyMemories/${partyId}`);
+  onValue(valueRef, (snapshot) => {
+    if(!snapshot.exists()) {
+      if(error){
+        error();
+      }
+    }else{
+      callBack(snapshot.val());
+    }
+  });
 }

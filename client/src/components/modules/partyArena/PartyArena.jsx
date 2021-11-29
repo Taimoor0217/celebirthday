@@ -55,13 +55,21 @@ const PartyArena = () => {
               hidden: currentRoom !== 1,
             }}
           />
-          {currentRoom === 2 && <Memories {...{ partyConfig, partyId }} />}
+          {currentRoom === 2 && (
+            <Memories
+              {...{ partyConfig, partyId, back: () => setCurrentRoom(1) }}
+            />
+          )}
           {currentRoom === 3 && (
             <Blessings
               {...{ partyConfig, partyId, back: () => setCurrentRoom(1) }}
             />
           )}
-          {/* {currentRoom === 4 && <CakeArea {...{ partyConfig, partyId }} />} */}
+          {currentRoom === 4 && (
+            <CakeArea
+              {...{ partyConfig, partyId, back: () => setCurrentRoom(1) }}
+            />
+          )}
         </div>
       </div>
     </VoxeetSessionProvider>

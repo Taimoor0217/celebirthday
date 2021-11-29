@@ -19,12 +19,6 @@ const Blessings = ({ partyConfig, partyId, back }) => {
   const [messages, setMessages] = React.useState({
     default: "A Very Happy Birthday From Us",
   });
-  // const messages = [
-  //   "Stay Happy",
-  //   "Family celebrating a birthday around a dinner table as they read happy birthday quotes When you sit down with a blank greeting card in front of you, don’t be surprised if you can’t seem to put pen to paper. Many of us get a case of writer’s block when we sit down to write a birthday card greeting, especially to the people we love the most. Sure, the birthday honoree knows just how much you love and appreciate him or her, but it doesn’t hurt to remind them on their day",
-  //   "Count your life by smiles, not tears. Count your age by friends, not years. Happy birthday!",
-  //   "Another adventure filled year awaits you. Welcome it by celebrating your birthday with pomp and splendor. Wishing you a very happy and fun-filled birthday!",
-  // ];
   React.useEffect(() => {
     fetchBlessings(partyId, setMessages);
   }, [partyId]);
@@ -36,6 +30,7 @@ const Blessings = ({ partyConfig, partyId, back }) => {
   };
   return (
     <div className="blessings-room room">
+      <h1 className="blessings-header">"Yours Sincerely"</h1>
       <Carousel
         itemsToShow={1}
         showArrows={false}
