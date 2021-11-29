@@ -17,5 +17,6 @@ We plan to achieve the following things in the future.
 
 
 ## Attributions
-- Most of the assets ( images, vectors and gifs have been taken from https://www.vecteezy.com/. Any mis-attribution will be duly entertained and modified
+(Any missing attribution will be duly entertained and added)
+- Most of the assets ( images, vectors and gifs have been taken from https://www.vecteezy.com/
 - CSS cake animation from https://codepen.io/JensJ/pen/MzZrbw
