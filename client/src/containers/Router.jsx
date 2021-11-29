@@ -7,7 +7,6 @@ import LandingPage from "../components/modules/landingPage/LandingPage";
 import CreateParty from "../components/modules/initializeParty/CreateParty";
 import JoinParty from "../components/modules/initializeParty/JoinParty";
 import PartyArena from "../components/modules/partyArena/PartyArena";
-import SlideShow from "../components/SlideShow";
 const AppRouter = () => {
   // const [user, setUser] = useState({
   //   type: "admin",
@@ -60,7 +59,6 @@ const AppRouter = () => {
           <Route exact path="/join" element={<JoinParty />} />
           <Route exact path="/create" element={<CreateParty />} />
           <Route exact path="/party" element={<PartyArena />} />
-          <Route exact path="/slideshow" element={<SlideShow />} />
           <Route exact path="/*" element={<LandingPage />} />
         </Routes>
         {/* </UserContext.Provider> */}
